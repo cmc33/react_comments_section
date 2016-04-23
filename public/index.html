@@ -69,7 +69,28 @@
       }
     });   
 
-    
+    var TodoApp = React.createClass({
+      getInitialState: function() {
+      return {items: ['Todo item #1', 'Todo item #2']};
+      },
+      updateItems: function(newItem) {
+        var allItems = this.state.items.concat([newItem]);
+        this.setState({
+        items: allItems
+      });
+      },
+      render: function() {
+      return (
+        <div>
+        <TodoBanner/>
+        <TodoList items={this.state.items}/>
+        <TodoForm onFormSubmit={this.updateItems}/>
+        </div>
+      );
+      }
+    });
+
+    React.renderComponent(<TodoApp/>, document.getElementById('todo'));
 </script>
   </body>
     
